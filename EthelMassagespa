@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Link — dikidi.net/1936895</title>
+  <meta name="description" content="Quick access page for dikidi.net/1936895" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>My Link</h1>
+      <p class="subtitle">Quick access to <span class="url">dikidi.net/1936895</span></p>
+    </div>
+  </header>
+
+  <main class="container main">
+    <section class="card">
+      <h2>Open the link</h2>
+      <p>If the site allows embedding, it will appear below. If not, use the button to open in a new tab.</p>
+
+      <!-- Attempt to embed the page. Many sites block this with X-Frame-Options / CSP. -->
+      <div class="embed-wrapper">
+        <iframe id="embedded" src="https://dikidi.net/1936895" title="dikidi" loading="lazy"></iframe>
+        <div id="embedError" class="embed-error" hidden>
+          <p>Embedding blocked by dikidi.net. Use the button below to open the page in a new tab.</p>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" href="https://dikidi.net/1936895" target="_blank" rel="noopener noreferrer">Open Link (new tab)</a>
+        <a class="btn" href="#" id="downloadBtn">Download page snapshot (if available)</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>About this page</h3>
+      <p>Simple landing page you can host for free (GitHub Pages, Netlify). If you want branding or a different layout I can update it.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>Made with ♥ · Ready for GitHub Pages / Netlify</small>
+    </div>
+  </footer>
+
+<script>
+  // Detect if iframe was blocked (simple heuristic)
+  const iframe = document.getElementById('embedded');
+  const embedError = document.getElementById('embedError');
+
+  // Wait a bit then test for blocked embedding.
+  setTimeout(() => {
+    try {
+      // Accessing iframe.contentWindow.location throws if cross-origin or blocked — use a try/catch.
+      const isBlocked = (() => {
+        try {
+          // if cross-origin but not blocked by header, this will still be accessible for type-checks, so we specifically test offsetHeight
+          return iframe.offsetHeight === 0 || iframe.clientWidth === 0;
+        } catch (e) {
+          // If access blocked by browser due to headers, we treat as blocked
+          return true;
+        }
+      })();
+
+      if (isBlocked) {
+        iframe.style.display = 'none';
+        embedError.hidden = false;
+      }
+    } catch (e) {
+      iframe.style.display = 'none';
+      embedError.hidden = false;
+    }
+  }, 800);
+</script>
+</body>
+</html>
